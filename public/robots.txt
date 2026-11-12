@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /go/
+
+Sitemap: https://rust-cheat.org/sitemap.xml
+
+# RSS: https://rust-cheat.org/rss.xml

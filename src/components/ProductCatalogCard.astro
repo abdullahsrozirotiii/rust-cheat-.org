@@ -1,0 +1,111 @@
+---
+import type { ProductPage } from '../data/products';
+import type { IconName } from './icons/types';
+import BuyNowLabel from './BuyNowLabel.astro';
+import Icon from './icons/Icon.astro';
+import { Badge } from '@/components/starwind/badge';
+import { Button } from '@/components/starwind/button';
+import { catalogCardTitle } from '../data/products';
+import { productPath } from '../utils/path';
+
+interface Props {
+  product: ProductPage;
+  icon: IconName;
+  label: string;
+  layout?: 'featured' | 'grid';
+}
+
+const { product, icon, label, layout = 'grid' } = Astro.props;
+const title = catalogCardTitle(product);
+const href = productPath(product.slug);
+const detailUrl = href;
+const isFeatured = layout === 'featured';
+const maxFeatures = isFeatured ? 6 : 4;
+const displayFeatures = product.features.slice(0, maxFeatures);
+
+const statusBadgeIcon = (text: string): IconName => {
+  if (/limited/i.test(text)) return 'alert';
+  if (/private/i.test(label)) return 'shieldCheck';
+  return 'circleCheck';
+};
+---
+
+<article class:list={['product-catalog-card', isFeatured && 'product-catalog-card--featured']}>
+  <div class="product-catalog-card__inner">
+    <header class="product-catalog-card__head">
+      <h2 class="product-catalog-card__title">
+        <a href={href}>{title}</a>
+      </h2>
+      <div class="product-catalog-card__badges">
+        <Badge tone="primary" appearance="outline" size="sm" class="product-catalog-card__badge gap-1">
+          <Icon name={icon} size={12} class="shrink-0" />
+          {label}
+        </Badge>
+        {
+          isFeatured && (
+            <Badge tone="neutral" appearance="soft" size="sm" class="product-catalog-card__badge gap-1">
+              Lite • Pro • Elite
+            </Badge>
+          )
+        }
+        {
+          product.badge && (
+            <Badge
+              tone={/limited/i.test(product.badge) ? 'warning' : 'success'}
+              appearance="soft"
+              size="sm"
+              class="product-catalog-card__badge gap-1"
+            >
+              <Icon name={statusBadgeIcon(product.badge)} size={12} class="shrink-0" />
+              {product.badge}
+            </Badge>
+          )
+        }
+        {
+          product.variant === 'limited' && (
+            <Badge tone="neutral" appearance="outline" size="sm" class="product-catalog-card__badge gap-1">
+              <Icon name="shieldCheck" size={12} class="shrink-0" />
+              Undetected
+            </Badge>
+          )
+        }
+        {
+          product.variant === 'limited' && (
+            <Badge tone="primary" appearance="solid" size="sm" class="product-catalog-card__badge gap-1">
+              <Icon name="zap" size={12} class="shrink-0" />
+              Popular
+            </Badge>
+          )
+        }
+      </div>
+    </header>
+
+    <ul class:list={['product-catalog-card__features', isFeatured && 'product-catalog-card__features--wide']}>
+      {displayFeatures.map((feature) => (
+        <li>
+          <Icon name="check" size={14} class="shrink-0 text-primary" />
+          <span>{feature}</span>
+        </li>
+      ))}
+      {product.more > 0 && (
+        <li class="product-catalog-card__more">+{product.more} more features</li>
+      )}
+    </ul>
+
+    <div class="product-catalog-card__actions">
+      <Button
+        as="a"
+        href={product.buyUrl}
+        variant="primary"
+        size="sm"
+        class="product-catalog-card__buy"
+      >
+        <BuyNowLabel label="Buy now" />
+      </Button>
+      <Button as="a" href={detailUrl} variant="outline" size="sm" class="product-catalog-card__view">
+        View details
+        <Icon name="arrowRight" size={16} />
+      </Button>
+    </div>
+  </div>
+</article>

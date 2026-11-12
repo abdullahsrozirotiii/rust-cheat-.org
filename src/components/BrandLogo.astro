@@ -1,0 +1,39 @@
+---
+interface Props {
+  href?: string;
+  class?: string;
+  imageClass?: string;
+  ariaLabel?: string;
+  /** Show hover text reveal (navbar / footer). */
+  reveal?: boolean;
+}
+
+const {
+  href = '/',
+  class: className,
+  imageClass,
+  ariaLabel = 'Rust Cheat home',
+  reveal = true,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['brand-logo', reveal && 'brand-logo--reveal', className]}
+  aria-label={ariaLabel}
+>
+  <img
+    src="/images/brand/rust-logo.webp"
+    alt="Rust Cheat logo"
+    width="36"
+    height="36"
+    class:list={['brand-logo__mark shrink-0 rounded-md', imageClass]}
+    decoding="async"
+  />
+  {reveal && (
+    <span class="brand-logo__text" aria-hidden="true">
+      <span class="brand-logo__rust">Rust</span>
+      <span class="brand-logo__cheats"> Cheat</span>
+    </span>
+  )}
+</a>

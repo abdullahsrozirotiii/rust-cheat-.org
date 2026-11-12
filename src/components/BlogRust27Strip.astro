@@ -1,0 +1,29 @@
+---
+import { RUST27_BLOG_IMAGES } from '../data/blog/rust27Images';
+import ResponsiveImage from './ResponsiveImage.astro';
+import { CARD_IMAGE_WIDTHS } from '../utils/responsiveImage';
+---
+
+<div class="blog-rust27-strip" aria-labelledby="blog-rust27-title">
+  <h2 id="blog-rust27-title" class="mb-4 text-lg font-semibold tracking-tight">
+    Rust gameplay gallery
+  </h2>
+  <p class="mb-4 text-sm text-muted-foreground">
+    Screenshots from our Rust cheats media library—used across guides and product previews.
+  </p>
+  <div class="blog-rust27-strip__grid">
+    {RUST27_BLOG_IMAGES.map((src) => (
+      <div class="blog-rust27-strip__cell">
+        <ResponsiveImage
+          src={src}
+          alt=""
+          width={400}
+          height={250}
+          widths={CARD_IMAGE_WIDTHS}
+          loading="lazy"
+          sizes="(min-width: 1024px) 120px, 20vw"
+        />
+      </div>
+    ))}
+  </div>
+</div>

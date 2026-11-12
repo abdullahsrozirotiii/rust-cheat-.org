@@ -1,0 +1,72 @@
+---
+import type { SystemRequirement } from '../../data/products';
+import { requirementDisplayIcon } from '../../data/sectionIcons';
+import SectionHeader from '../SectionHeader.astro';
+import ProductIconWell from './ProductIconWell.astro';
+import type { IconName } from '../icons/types';
+
+interface Props {
+  requirements: SystemRequirement[];
+}
+
+const { requirements } = Astro.props;
+
+const reqLabels: Record<string, string> = {
+  reqWindows: 'Windows',
+  reqSteam: 'Steam',
+  reqSettings: 'Permissions',
+  reqWifi: 'Network',
+  reqCpu: 'Hardware',
+  reqRestorePoint: 'Restore point',
+  reqShieldGuide: 'Setup guide',
+  reqMailOrder: 'Order email',
+  reqShieldAccount: 'Account',
+  reqWifiPortal: 'Portal access',
+};
+
+const reqLabel = (icon: IconName) =>
+  reqLabels[icon] ??
+  icon
+    .replace(/^req/, '')
+    .replace(/([A-Z])/g, ' $1')
+    .trim();
+
+const gridClass =
+  requirements.length >= 4
+    ? 'product-requirements__grid product-requirements__grid--quad'
+    : 'product-requirements__grid product-requirements__grid--compact';
+---
+
+<section
+  id="product-requirements"
+  class="border-y border-border bg-muted/20 py-12 md:py-16"
+  aria-labelledby="product-requirements-title"
+>
+  <div class="mx-auto max-w-6xl px-5">
+    <SectionHeader
+      eyebrow="Compatibility"
+      title="System requirements"
+      desc="Quick checklist before checkout or loader install."
+      titleId="product-requirements-title"
+    />
+
+    <ul class:list={[gridClass, 'mt-10']} role="list">
+      {
+        requirements.map((req) => (
+          <li class="product-requirements__card">
+            <div class="product-requirements__card-head">
+              <ProductIconWell
+                name={requirementDisplayIcon(req.icon)}
+                iconSize={20}
+                shape="circle"
+                class="product-requirements__icon shrink-0 bg-primary/12"
+              />
+              <p class="product-requirements__label">{reqLabel(req.icon)}</p>
+            </div>
+            <p class="product-requirements__text">{req.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

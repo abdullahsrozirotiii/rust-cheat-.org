@@ -1,0 +1,37 @@
+---
+import { canonicalUrl } from '../config/seo';
+
+interface Props {
+  pathname: string;
+  shareText: string;
+}
+
+const { pathname, shareText } = Astro.props;
+const shareUrl = canonicalUrl(pathname);
+const shareUrlEnc = encodeURIComponent(shareUrl);
+const textEnc = encodeURIComponent(shareText);
+---
+
+<nav class="sr-only" aria-label="Share this page">
+  <a
+    href={`https://twitter.com/intent/tweet?url=${shareUrlEnc}&text=${textEnc}`}
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    Share on X
+  </a>
+  <a
+    href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrlEnc}`}
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    Share on Facebook
+  </a>
+  <a
+    href={`https://t.me/share/url?url=${shareUrlEnc}&text=${textEnc}`}
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    Share on Telegram
+  </a>
+</nav>

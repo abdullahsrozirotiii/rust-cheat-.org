@@ -1,0 +1,16 @@
+---
+import Icon from './icons/Icon.astro';
+
+interface Props {
+  label?: string;
+  iconSize?: number;
+  class?: string;
+}
+
+const { label = 'Buy now', iconSize = 16, class: className } = Astro.props;
+---
+
+<span class:list={['inline-flex items-center gap-2', className]}>
+  <Icon name="package" size={iconSize} class="shrink-0" />
+  {label}
+</span>

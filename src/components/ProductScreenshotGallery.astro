@@ -1,0 +1,114 @@
+---
+import type { ProductSlide } from '../data/products';
+import ResponsiveImage from './ResponsiveImage.astro';
+import { THUMB_IMAGE_WIDTHS } from '../utils/responsiveImage';
+import { Badge } from '@/components/starwind/badge';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/starwind/carousel';
+
+interface Props {
+  images: ProductSlide[];
+  id?: string;
+}
+
+const { images, id = 'product-screenshots' } = Astro.props;
+const hasMultiple = images.length > 1;
+---
+
+<div
+  class:list={['product-gallery', !hasMultiple && 'product-gallery--single']}
+  id={id}
+  data-product-gallery
+>
+  <div class="relative min-w-0 overflow-hidden rounded-xl border border-border bg-zinc-950">
+    {
+      hasMultiple ? (
+        <Carousel
+          autoInit={false}
+          data-product-gallery-embla
+          opts={{ loop: true, align: 'start' }}
+          class="product-gallery__carousel w-full"
+        >
+          <CarouselContent class="product-gallery__track">
+            {images.map((img, i) => (
+              <CarouselItem class="basis-full">
+                <figure class="product-gallery__frame">
+                  <ResponsiveImage
+                    src={img.src}
+                    alt={img.alt}
+                    width={960}
+                    height={540}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={i === 0 ? 'high' : undefined}
+                    sizes="(min-width: 1024px) 640px, 100vw"
+                    class="product-gallery__image"
+                  />
+                </figure>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      ) : (
+        <figure class="product-gallery__frame product-gallery__main">
+          {images[0] && (
+            <ResponsiveImage
+              src={images[0].src}
+              alt={images[0].alt}
+              width={960}
+              height={540}
+              loading="eager"
+              fetchPriority="high"
+              sizes="(min-width: 1024px) 640px, 100vw"
+              class="product-gallery__image"
+            />
+          )}
+        </figure>
+      )
+    }
+    <Badge
+      tone="neutral"
+      appearance="frosted"
+      size="sm"
+      class="pointer-events-none absolute bottom-3 left-3 shadow-sm"
+    >
+      {hasMultiple ? 'Auto-rotating preview' : 'Screenshot from the build'}
+    </Badge>
+  </div>
+
+  {
+    hasMultiple && (
+      <div class="product-gallery__thumbs" role="tablist" aria-label="Product screenshots">
+        {images.map((img, i) => (
+          <button
+            type="button"
+            class:list={['product-gallery__thumb', i === 0 && 'is-active']}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={`Screenshot ${i + 1}: ${img.caption}`}
+            data-product-gallery-thumb
+            data-index={i}
+          >
+            <ResponsiveImage
+              src={img.src}
+              alt=""
+              width={320}
+              height={180}
+              widths={THUMB_IMAGE_WIDTHS}
+              loading="lazy"
+              sizes="148px"
+              class="size-full object-cover"
+            />
+          </button>
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<script>
+  import { setupProductGalleryLoop } from '../scripts/product-gallery-loop.ts';
+  setupProductGalleryLoop();
+</script>
