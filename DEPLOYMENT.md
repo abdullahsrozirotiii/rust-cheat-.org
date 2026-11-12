@@ -31,6 +31,8 @@ Build pipeline: image optimize → Astro static build → prune images → final
 
 Attach custom domain **`rust-cheat.org`** (and `www` if needed). Use **Full (strict)** SSL.
 
+Preview deployments (`*.pages.dev`) get **`X-Robots-Tag: noindex, nofollow`** via [`functions/_middleware.js`](functions/_middleware.js). Production HTML and `rust-cheat.org` responses are unchanged (`index, follow` in page meta). Verify locally: `node scripts/test-preview-host-noindex.mjs`, optional `npx wrangler pages dev dist`.
+
 ### Option B — Cloudflare Workers (static assets)
 
 Uses [`wrangler.toml`](wrangler.toml):

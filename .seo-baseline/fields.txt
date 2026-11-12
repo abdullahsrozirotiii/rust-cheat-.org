@@ -1,56 +1,34 @@
+# SEO baseline snapshot — rust-cheat.org (local reference; not deployed)
+# Regenerate after major metadata changes using post-build dist/*.html
+
 === index.html ===
-Dota 2 Cheats &amp; Hacks | Scripts, Map Hack &amp; ESP
-Dota 2 cheats for PC ranked: scripts, map hack, zoom hack, and skin changer tiers updated every patch at dotacheats.com.
-https://dotacheats.com/
+Rust Cheats – ESP, Aimbot & No Recoil | Rust Cheat
+Undetected Rust cheats for Steam PC—player ESP, aimbot, no recoil, radar, and loot ESP for Facepunch official. Updated every patch at rust-cheat.org.
+https://rust-cheat.org/
 index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-1
-1
-=== cheats/index.html ===
-Dota 2 Cheat Tiers | Lite, Pro &amp; Elite
-Compare Lite, Pro, and Elite dota cheats—ESP, scripts, map hack, and automation modules for Steam ranked on Windows.
-https://dotacheats.com/cheats/
-index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-1
-1
-=== cheats/lite/index.html ===
-Lite Dota 2 Cheats | DotaCheats
-Entry tier for dota cheats with player ESP, ward locator, jungle awareness and minimap overlay.
-https://dotacheats.com/cheats/lite/
-index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-1
-1
+
+=== products/rust-cheats/index.html ===
+Buy Rust Cheats | Lite, Pro & Elite Tiers
+Compare and buy Rust cheats: Lite awareness, Pro PvP combat, Elite full suite—plus HWID spoofer, UGC, and skin unlock utilities.
+https://rust-cheat.org/products/rust-cheats/
+
+=== products/rust-cheats/elite/index.html ===
+Rust Elite Cheats | Full ESP, Aimbot & Radar
+Rust Elite tier: all Lite and Pro modules, expanded radar, skin unlock utility, and priority EAC updates for Steam PC.
+https://rust-cheat.org/products/rust-cheats/elite/
+
 === blog/index.html ===
-Dota 2 Cheats Guides &amp; Patch Notes
-Setup guides, Lite vs Pro comparisons, VAC patch checklists, and ranked config tips for dota cheats.
-https://dotacheats.com/blog/
-index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-1
-1
-=== blog/dota-2-cheat-codes-guide/index.html ===
-Dota 2 cheat codes guide: console commands for | DotaCheats
-Full list of Dota 2 cheat codes for custom lobbies—gold, levels, vision, hero spawn and item commands.
-https://dotacheats.com/blog/dota-2-cheat-codes-guide/
-index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-1
-1
+Guides – ESP, Aimbot & EAC Patch Notes | Rust Cheat
+Guides covering Rust ESP setup, Lite vs Pro tiers, aimbot tuning, HWID recovery, admin commands, and EAC patch-day checklists at rust-cheat.org.
+https://rust-cheat.org/blog/
+
 === faq/index.html ===
-FAQ | Dota 2 Cheats, Products &amp; Setup
-Answers on cheat tiers, map hack, scripts, HWID tools, checkout, and blog guides at dotacheats.com.
-https://dotacheats.com/faq/
-index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-1
-1
-=== contact/index.html ===
-Contact &amp; Support | DotaCheats
-Get help with loader setup, HWID, and checkout for Dota 2 cheat tiers and utilities.
-https://dotacheats.com/contact/
-index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-1
-1
+Rust Cheats FAQ | Tiers, ESP & Checkout | Rust Cheat
+FAQ on Rust cheat tiers, ESP and aimbot modules, HWID tools, platform support, and secure checkout at rust-cheat.org.
+https://rust-cheat.org/faq/
+
 === 404.html ===
-Page not found | DotaCheats
-The page you requested could not be found on dotacheats.com.
-https://dotacheats.com/404/
+Page not found | Rust Cheat
+The page you requested could not be found on rust-cheat.org.
+https://rust-cheat.org/404/
 noindex, nofollow
-0
-1
